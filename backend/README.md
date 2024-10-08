@@ -170,3 +170,32 @@ The email templates are in `./backend/app/email-templates/`. Here, there are two
 Before continuing, ensure you have the [MJML extension](https://marketplace.visualstudio.com/items?itemName=attilabuti.vscode-mjml) installed in your VS Code.
 
 Once you have the MJML extension installed, you can create a new email template in the `src` directory. After creating the new email template and with the `.mjml` file open in your editor, open the command palette with `Ctrl+Shift+P` and search for `MJML: Export to HTML`. This will convert the `.mjml` file to a `.html` file and now you can save it in the build directory.
+
+
+## develop steps
+
+```bash
+cd backend
+
+# 安装命令行依赖
+pip install fastapi-cli
+
+# 准备数据
+
+# Let the DB start
+python app/backend_pre_start.py
+
+# Run migrations(以后使用atlas来管理模式迁移)
+alembic upgrade head
+
+# Create initial data in DB
+python app/initial_data.py
+
+
+# 开发
+fastapi dev
+
+# 线上生产
+fastapi run app/main.py 
+
+```

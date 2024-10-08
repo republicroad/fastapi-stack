@@ -16,6 +16,7 @@
             "cwd": "${workspaceFolder}/backend",
             "jinja": true,
             "envFile": "${workspaceFolder}/.env",
+            "justMyCode": false //false表示调试库代码
         },
         {
             "type": "chrome",

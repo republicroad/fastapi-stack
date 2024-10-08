@@ -158,3 +158,40 @@ docker compose down -v
 To update the tests, navigate to the tests directory and modify the existing test files or add new ones as needed.
 
 For more information on writing and running Playwright tests, refer to the official [Playwright documentation](https://playwright.dev/docs/intro).
+
+
+## develop steps
+
+```bash
+cd frontend
+
+# 根据.nvmrc文件配置安装node版本, 下载失败需要配置代理 all_proxy = http://username:password@<IP>:<port>/
+## all_proxy  http_proxy  https_proxy
+## all_proxy=http://192.168.1.201:1080/ fnm install
+fnm install
+# 查看当前使用的node版本.
+fnm use
+
+
+# 安装依赖
+npm install
+# 测试服务
+npm run dev
+```
+
+
+## FAQ
+
+
+### jsx
+
+[Introducing JSX](https://legacy.reactjs.org/docs/introducing-jsx.html)
+
+### tsx
+
+[What is the difference between .ts and .tsx extensions](https://stackoverflow.com/questions/56871384/what-is-the-difference-between-ts-and-tsx-extensions-both-are-used-as-extensi)  
+
+> Use .ts for pure TypeScript files.  
+> Use .tsx for files which contain JSX.  
+> For example, a React component would be .tsx, but a file containing helper functions would be .ts.  
+
