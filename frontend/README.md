@@ -179,6 +179,8 @@ npm install
 npm run dev
 ```
 
+html to jsx converter:  
+[html-to-jsx](https://transform.tools/html-to-jsx)
 
 ## FAQ
 

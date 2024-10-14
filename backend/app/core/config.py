@@ -1,3 +1,7 @@
+
+import sys
+from pathlib import Path
+import logging
 import secrets
 import warnings
 from typing import Annotated, Any, Literal
@@ -13,6 +17,7 @@ from pydantic import (
 from pydantic_core import MultiHostUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing_extensions import Self
+logger = logging.getLogger(__name__)
 
 
 def parse_cors(v: Any) -> list[str] | str:
@@ -21,6 +26,9 @@ def parse_cors(v: Any) -> list[str] | str:
     elif isinstance(v, list | str):
         return v
     raise ValueError(v)
+
+p = Path(__file__)
+PROJECT_BASE = Path(*p.parts[0:p.parts.index("backend")])
 
 
 class Settings(BaseSettings):
@@ -31,6 +39,7 @@ class Settings(BaseSettings):
         extra="ignore",
     )
     API_V1_STR: str = "/api/v1"
+    STATIC_ROOT: str | Path = PROJECT_BASE / "frontend/dist" # "/home/ryefccd/workspace/fastapi-stack/backend/app/static" "frontend/dist"
     SECRET_KEY: str = secrets.token_urlsafe(32)
     # 60 minutes * 24 hours * 8 days = 8 days
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
@@ -120,3 +129,5 @@ class Settings(BaseSettings):
 
 
 settings = Settings()  # type: ignore
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+logger.info(f"PROJECT_BASE:{PROJECT_BASE}")
